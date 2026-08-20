@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dar-Ekh Shambala · Shambala</title>
+<meta name="theme-color" content="#0f766e">
+<meta property="og:title" content="Dar-Ekh Shambala">
+<meta property="og:description" content="Project assistant · Shambala">
+<style>
+:root{--brand:#0f766e;--bg:#f6f7f8;--card:#fff;--fg:#111827;--muted:#6b7280;--line:#e5e7eb}
+@media(prefers-color-scheme:dark){:root{--bg:#0b0f12;--card:#151a1f;--fg:#f3f4f6;--muted:#9aa3ad;--line:#262d34}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;
+ display:flex;justify-content:center;padding:24px 16px calc(24px + env(safe-area-inset-bottom))}
+.card{width:100%;max-width:420px;background:var(--card);border-radius:20px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08),0 12px 32px rgba(0,0,0,.06)}
+.hero{background:var(--brand);height:104px}
+.body{padding:0 24px 24px;margin-top:-52px}
+.avatar{width:104px;height:104px;border-radius:50%;border:4px solid var(--card);display:flex;align-items:center;
+ justify-content:center;font-size:36px;font-weight:600;color:#fff;background:var(--brand)}
+h1{font-size:24px;margin:16px 0 4px;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:0 0 20px;font-size:15px}
+.save{display:block;text-align:center;background:var(--brand);color:#fff;text-decoration:none;font-weight:600;
+ padding:15px;border-radius:14px;margin-bottom:8px;-webkit-tap-highlight-color:transparent}
+.save:active{opacity:.85}
+.hint{text-align:center;color:var(--muted);font-size:12.5px;margin:0 0 18px}
+.rows{border-top:1px solid var(--line)}
+.row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line);
+ text-decoration:none;color:inherit}
+.row .k{color:var(--muted);font-size:13px;flex:0 0 auto}
+.row .v{text-align:right;word-break:break-word;font-size:15px}
+.note{color:var(--muted);font-size:14px;margin-top:18px}
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="hero"></div>
+  <div class="body">
+    <div class="avatar">DS</div>
+    <h1>Dar-Ekh Shambala</h1>
+    <p class="sub">Project assistant · Shambala</p>
+
+    <a class="save" id="save" href="contact.vcf" type="text/vcard">Контакт хадгалах</a>
+    <p class="hint">iPhone: татсаны дараа "Add to Contacts" · Android: шууд Contacts нээгдэнэ</p>
+
+    <div class="rows">
+      <a class="row" href="tel:+97695565888"><span class="k">Гар утас</span><span class="v">+976 95565888</span></a>
+      <a class="row" href="mailto:batchuluundariekh@gmail.com"><span class="k">И-мэйл</span><span class="v">batchuluundariekh@gmail.com</span></a>
+    </div>
+    
+  </div>
+</main>
+<script>
+// Fallback: if the host serves .vcf with a wrong Content-Type, hand the browser
+// a blob tagged text/vcard so iOS/Android still recognise it as a contact.
+document.getElementById('save').addEventListener('click', async function (ev) {
+  try {
+    const res = await fetch('contact.vcf', { cache: 'no-store' });
+    const ct = (res.headers.get('content-type') || '').toLowerCase();
+    if (ct.includes('vcard') || ct.includes('x-vcard')) return; // server is fine, let the link work
+    ev.preventDefault();
+    const blob = new Blob([await res.text()], { type: 'text/vcard;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = "dar-ekh.vcf";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 20000);
+  } catch (e) { /* offline or fetch blocked — the plain link already handles it */ }
+});
+</script>
+</body>
+</html>

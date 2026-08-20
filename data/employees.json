@@ -1,0 +1,55 @@
+{
+  "site": {
+    "baseUrl": "https://shambala2056.github.io/Shambala-card",
+    "org": "Shambala",
+    "brandColor": "#0f766e",
+    "displayNameSuffix": "Shambala"
+  },
+  "employees": [
+    {
+      "slug": "shijijbat",
+      "lastName": "B",
+      "firstName": "Shijijbat",
+      "org": "Shambala",
+      "title": "CEO",
+      "phoneMobile": "+976 91918097",
+      "email": "zeerd.shambala@gmail.com"
+    },
+    {
+      "slug": "erdenesuvd",
+      "lastName": "B",
+      "firstName": "Erdenesuvd",
+      "org": "Shambala",
+      "title": "CEO",
+      "phoneMobile": "+976 91172710",
+      "email": "hello@shambala.today"
+    },
+    {
+      "slug": "oyundari",
+      "lastName": "B",
+      "firstName": "Oyundari",
+      "org": "Shambala",
+      "title": "COO",
+      "phoneMobile": "+976 91198482",
+      "email": "Dari.shambala2056@gmail.com"
+    },
+    {
+      "slug": "dar-ekh",
+      "lastName": "B",
+      "firstName": "Dar-Ekh",
+      "org": "Shambala",
+      "title": "Project assistant",
+      "phoneMobile": "+976 95565888",
+      "email": "batchuluundariekh@gmail.com"
+    },
+    {
+      "slug": "khurelsukh",
+      "lastName": "D",
+      "firstName": "Khurelsukh",
+      "org": "Shambala",
+      "title": "Project assistant",
+      "phoneMobile": "+976 80129361",
+      "email": "Khurelsuhdavaasuh7@gmail.com"
+    }
+  ]
+}
