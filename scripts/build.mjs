@@ -8,6 +8,8 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const cfg = JSON.parse(readFileSync(join(ROOT, 'data/employees.json'), 'utf8'));
 const site = cfg.site ?? {};
 const base = (site.baseUrl ?? '').replace(/\/+$/, '');
+// site.defaults нь ажилтан бүрт нэгдэнэ — org, website мэтийг 8 удаа давтахгүйн тулд
+const people = cfg.employees.map((p) => ({ ...(site.defaults ?? {}), ...p }));
 
 const esc = (v) =>
   String(v ?? '').replace(/\\/g, '\\\\').replace(/;/g, '\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
@@ -61,11 +63,11 @@ function page(p) {
   const initials = fn.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
   const color = site.brandColor || '#0f766e';
   const rows = [
-    p.phoneMobile && ['Гар утас', p.phoneMobile, `tel:${p.phoneMobile.replace(/\s/g, '')}`],
-    p.phoneWork && ['Ажлын утас', p.phoneWork, `tel:${p.phoneWork.replace(/\s/g, '')}`],
-    p.email && ['И-мэйл', p.email, `mailto:${p.email}`],
-    p.website && ['Вэб', p.website.replace(/^https?:\/\//, ''), p.website],
-    p.address && ['Хаяг', p.address, `https://maps.google.com/?q=${encodeURIComponent(p.address)}`],
+    p.phoneMobile && ['Mobile', p.phoneMobile, `tel:${p.phoneMobile.replace(/\s/g, '')}`],
+    p.phoneWork && ['Work', p.phoneWork, `tel:${p.phoneWork.replace(/\s/g, '')}`],
+    p.email && ['Email', p.email, `mailto:${p.email}`],
+    p.website && ['Website', p.website.replace(/^https?:\/\//, '').replace(/\/$/, ''), p.website],
+    p.address && ['Address', p.address, `https://maps.google.com/?q=${encodeURIComponent(p.address)}`],
   ].filter(Boolean);
 
   return `<!doctype html>
@@ -91,9 +93,8 @@ body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 -apple-system,B
 h1{font-size:24px;margin:16px 0 4px;letter-spacing:-.01em}
 .sub{color:var(--muted);margin:0 0 20px;font-size:15px}
 .save{display:block;text-align:center;background:var(--brand);color:#fff;text-decoration:none;font-weight:600;
- padding:15px;border-radius:14px;margin-bottom:8px;-webkit-tap-highlight-color:transparent}
+ padding:15px;border-radius:14px;margin-bottom:22px;-webkit-tap-highlight-color:transparent}
 .save:active{opacity:.85}
-.hint{text-align:center;color:var(--muted);font-size:12.5px;margin:0 0 18px}
 .rows{border-top:1px solid var(--line)}
 .row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line);
  text-decoration:none;color:inherit}
@@ -110,8 +111,7 @@ h1{font-size:24px;margin:16px 0 4px;letter-spacing:-.01em}
     <h1>${html(fn)}</h1>
     <p class="sub">${html([p.title, p.org].filter(Boolean).join(' · '))}</p>
 
-    <a class="save" id="save" href="contact.vcf" type="text/vcard">Контакт хадгалах</a>
-    <p class="hint">iPhone: татсаны дараа "Add to Contacts" · Android: шууд Contacts нээгдэнэ</p>
+    <a class="save" id="save" href="contact.vcf" type="text/vcard">Save contact</a>
 
     <div class="rows">
       ${rows.map(([k, v, href]) => `<a class="row" href="${html(href)}"><span class="k">${html(k)}</span><span class="v">${html(v)}</span></a>`).join('\n      ')}
@@ -147,7 +147,7 @@ function indexPage(list) {
   return `<!doctype html>
 <html lang="mn"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${html(site.org || 'Contacts')} — Ажилчдын карт</title>
+<title>${html(site.org || 'Contacts')} — Team contacts</title>
 <style>
 :root{--brand:${html(color)};--bg:#f6f7f8;--card:#fff;--fg:#111827;--muted:#6b7280;--line:#e5e7eb}
 @media(prefers-color-scheme:dark){:root{--bg:#0b0f12;--card:#151a1f;--fg:#f3f4f6;--muted:#9aa3ad;--line:#262d34}}
@@ -159,8 +159,8 @@ a.p{display:flex;justify-content:space-between;align-items:center;background:var
  border-radius:14px;padding:14px 16px;margin-bottom:10px;text-decoration:none;color:inherit}
 small{color:var(--muted)}
 </style></head><body><div class="wrap">
-<h1>${html(site.org || '')} — Ажилчдын NFC карт</h1>
-<p class="s">Хүн тус бүрийн хуудсанд орж "Контакт хадгалах" дарна.</p>
+<h1>${html(site.org || '')}</h1>
+<p class="s">Open a card and tap Save contact.</p>
 ${list.map((p) => `<a class="p" href="e/${html(p.slug)}/"><span>${html(displayName(p))}</span><small>${html(p.title || '')}</small></a>`).join('\n')}
 </div></body></html>
 `;
@@ -169,7 +169,7 @@ ${list.map((p) => `<a class="p" href="e/${html(p.slug)}/"><span>${html(displayNa
 // ---- build ----
 rmSync(join(ROOT, 'e'), { recursive: true, force: true });
 const seen = new Set();
-for (const p of cfg.employees) {
+for (const p of people) {
   if (!p.slug) throw new Error(`slug дутуу: ${JSON.stringify(p)}`);
   if (seen.has(p.slug)) throw new Error(`slug давхардсан: ${p.slug}`);
   seen.add(p.slug);
@@ -179,6 +179,6 @@ for (const p of cfg.employees) {
   writeFileSync(join(dir, 'index.html'), page(p));
   console.log(`  ✓ ${displayName(p).padEnd(20)} ${base}/e/${p.slug}/`);
 }
-writeFileSync(join(ROOT, 'index.html'), indexPage(cfg.employees));
+writeFileSync(join(ROOT, 'index.html'), indexPage(people));
 writeFileSync(join(ROOT, '.nojekyll'), '');
-console.log(`\n${cfg.employees.length} ажилтан бэлэн.`);
+console.log(`\n${people.length} ажилтан бэлэн.`);
