@@ -52,7 +52,8 @@ git add -A && git commit -m "Update contacts" && git push
 |---|---|---|
 | `slug` | ✅ | URL-д орох латин нэр, давхардахгүй (`shijijbat`) |
 | `lastName` / `firstName` | ✅ | Овог / Нэр |
-| `displayName` | | Зөвхөн онцгой тохиолдолд — үндсэндээ `site.displayNameSuffix`-ээс автоматаар үүснэ |
+| `displayName` | | Зөвхөн онцгой тохиолдолд — үндсэндээ `firstName` + `lastName`-ээс автоматаар үүснэ |
+| `aliases` | | Хуучин slug-ууд — тэднээс шинэ хаяг руу redirect хуудас үүснэ |
 | `org`, `title` | | Байгууллага, албан тушаал |
 | `phoneMobile`, `phoneWork` | | `+976 91918097` хэлбэрээр |
 | `email`, `website`, `address`, `note` | | |
