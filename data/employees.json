@@ -62,7 +62,11 @@
       "title": "CEO",
       "org": "Jack's Coffee",
       "phoneMobile": "+976 80006824",
-      "email": "purevjargal@jackscoffee.mn"
+      "email": "purevjargal@jackscoffee.mn",
+      "websites": [
+        "https://jacks.coffee/",
+        "https://www.land-art.space/"
+      ]
     }
   ]
 }

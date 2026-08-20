@@ -57,6 +57,7 @@ git add -A && git commit -m "Update contacts" && git push
 | `org`, `title` | | Байгууллага, албан тушаал |
 | `phoneMobile`, `phoneWork` | | `+976 91918097` хэлбэрээр |
 | `email`, `website`, `address`, `note` | | |
+| `websites` | | Олон вэб хаяг — жагсаалтын эхнийх нь эхэнд харагдана, `website`-г дарж бичнэ |
 
 Хоосон талбар vCard-д огт орохгүй тул `""` орхиход асуудалгүй.
 

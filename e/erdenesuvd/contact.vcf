@@ -6,6 +6,6 @@ ORG:Shambala Carbon Offsets LLC
 TITLE:CPO
 TEL;TYPE=CELL,VOICE:+976 91172710
 EMAIL;TYPE=INTERNET,WORK:hello@shambala.today
-URL:https://www.land-art.space/
+URL;TYPE=WORK:https://www.land-art.space/
 REV:2026-08-20T00:00:00Z
 END:VCARD
