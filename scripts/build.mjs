@@ -17,8 +17,9 @@ const html = (v) =>
   String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 // Contacts дээр харагдах нэр: нэр, ард нь овгийн үсэг — "Shijirbat B."
-// Ганц үсэг бол цэг залгана; бүтэн овог бичигдсэн бол хэвээр нь үлдээнэ.
-const surname = (v) => (v && v.length === 1 ? v + '.' : v);
+// Товчлол бол цэг залгана. Кирилл нэг үсэг латинаар 2-3 болдог (Ц → Ts, Щ → Shch)
+// тул 3 хүртэлх үсгийг товчлол гэж үзнэ; бүтэн овог бичигдсэн бол хэвээр нь үлдээнэ.
+const surname = (v) => (v && v.length <= 3 && !v.endsWith('.') ? v + '.' : v);
 const displayName = (p) =>
   p.displayName || [p.firstName, surname(p.lastName)].filter(Boolean).join(' ').trim();
 
