@@ -37,12 +37,15 @@
       "email": "Dari.shambala2056@gmail.com"
     },
     {
-      "slug": "dar-ekh",
+      "slug": "dari-ekh",
       "lastName": "B",
-      "firstName": "Dar-Ekh",
+      "firstName": "Dari-Ekh",
       "title": "Project assistant",
       "phoneMobile": "+976 95565888",
-      "email": "batchuluundariekh@gmail.com"
+      "email": "batchuluundariekh@gmail.com",
+      "aliases": [
+        "dar-ekh"
+      ]
     },
     {
       "slug": "khurelsukh",
