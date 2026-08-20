@@ -142,6 +142,19 @@ document.getElementById('save').addEventListener('click', async function (ev) {
 `;
 }
 
+// Хуучин slug-аар бичигдсэн NFC таг ажилласаар байхын тулд redirect үлдээнэ
+function aliasPage(to) {
+  return `<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta http-equiv="refresh" content="0;url=${html(to)}">
+<link rel="canonical" href="${html(to)}">
+<title>Redirecting…</title></head>
+<body><p>Redirecting to <a href="${html(to)}">${html(to)}</a>…</p>
+<script>location.replace(${JSON.stringify(to)});</script>
+</body></html>
+`;
+}
+
 function indexPage(list) {
   const color = site.brandColor || '#0f766e';
   return `<!doctype html>
@@ -177,6 +190,13 @@ for (const p of people) {
   mkdirSync(dir, { recursive: true });
   writeFileSync(join(dir, 'contact.vcf'), vcard(p));
   writeFileSync(join(dir, 'index.html'), page(p));
+  for (const alias of p.aliases ?? []) {
+    if (seen.has(alias)) throw new Error(`alias slug-тай мөргөлдөж байна: ${alias}`);
+    seen.add(alias);
+    mkdirSync(join(ROOT, 'e', alias), { recursive: true });
+    writeFileSync(join(ROOT, 'e', alias, 'index.html'), aliasPage(`${base}/e/${p.slug}/`));
+    console.log(`    ↳ /e/${alias}/ → /e/${p.slug}/ (redirect)`);
+  }
   console.log(`  ✓ ${displayName(p).padEnd(20)} ${base}/e/${p.slug}/`);
 }
 writeFileSync(join(ROOT, 'index.html'), indexPage(people));

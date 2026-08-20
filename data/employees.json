@@ -11,12 +11,15 @@
   },
   "employees": [
     {
-      "slug": "shijijbat",
+      "slug": "shijirbat",
       "lastName": "B",
-      "firstName": "Shijijbat",
+      "firstName": "Shijirbat",
       "title": "CEO",
       "phoneMobile": "+976 91918097",
-      "email": "zeerd.shambala@gmail.com"
+      "email": "zeerd.shambala@gmail.com",
+      "aliases": [
+        "shijijbat"
+      ]
     },
     {
       "slug": "erdenesuvd",
