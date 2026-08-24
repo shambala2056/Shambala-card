@@ -1,19 +1,32 @@
 <!doctype html>
-<html lang="mn"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Shambala Carbon Offsets LLC — Team contacts</title>
+<meta name="theme-color" content="#272727">
 <style>
-:root{--brand:#0f766e;--bg:#f6f7f8;--card:#fff;--fg:#111827;--muted:#6b7280;--line:#e5e7eb}
-@media(prefers-color-scheme:dark){:root{--bg:#0b0f12;--card:#151a1f;--fg:#f3f4f6;--muted:#9aa3ad;--line:#262d34}}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;
- display:flex;justify-content:center;padding:32px 16px}
-.wrap{width:100%;max-width:420px}
-h1{font-size:22px;margin:0 0 4px}p.s{color:var(--muted);margin:0 0 20px;font-size:14px}
-a.p{display:flex;justify-content:space-between;align-items:center;background:var(--card);border:1px solid var(--line);
- border-radius:14px;padding:14px 16px;margin-bottom:10px;text-decoration:none;color:inherit}
-small{color:var(--muted)}
+:root{--bg:#272727;--card:#2f2f2f;--fg:#f4f4f4;--muted:#9b9b9b;--line:#3d3d3d;
+ --accent:#a8cc30;--accent-ink:#1c1c1c;--yellow:#fce400;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+ font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;
+ padding:24px 16px calc(24px + env(safe-area-inset-bottom))}
+img{max-width:100%;height:auto;display:block}
+
+.wrap{width:100%;max-width:420px;margin:0 auto}
+.brand{padding:8px 0 28px}
+.brand img{width:196px;margin:0 auto}
+p.s{color:var(--muted);margin:0 0 18px;font-size:14px;text-align:center}
+a.p{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--card);
+ overflow-wrap:anywhere;
+ border:1px solid var(--line);border-radius:14px;padding:15px 17px;margin-bottom:10px;
+ text-decoration:none;color:inherit}
+a.p:active{border-color:var(--accent)}
+small{color:var(--muted);font-size:12.5px;letter-spacing:.03em;text-transform:uppercase;
+ text-align:right;flex:0 0 auto}
+.foot{padding:22px 0 4px}
+.foot img{width:132px;margin:0 auto;opacity:.72}
 </style></head><body><div class="wrap">
-<h1>Shambala Carbon Offsets LLC</h1>
+<header class="brand"><img src="assets/land-art-space.png" alt="Land-art space" width="720" height="212"></header>
 <p class="s">Open a card and tap Save contact.</p>
 <a class="p" href="e/shijirbat/"><span>Shijirbat B.</span><small>CEO</small></a>
 <a class="p" href="e/erdenesuvd/"><span>Erdenesuvd B.</span><small>CPO</small></a>
@@ -23,4 +36,5 @@ small{color:var(--muted)}
 <a class="p" href="e/purevjargal/"><span>Purevjargal Ts.</span><small>CEO</small></a>
 <a class="p" href="e/work-1/"><span>Work 1</span><small>reserved</small></a>
 <a class="p" href="e/work-2/"><span>Work 2</span><small>reserved</small></a>
+<footer class="foot"><img src="assets/hexagon.png" alt="Hexagon — Land Art Community" width="514" height="142"></footer>
 </div></body></html>

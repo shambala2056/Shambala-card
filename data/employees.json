@@ -2,7 +2,6 @@
   "site": {
     "baseUrl": "https://shambala2056.github.io/Shambala-card",
     "org": "Shambala Carbon Offsets LLC",
-    "brandColor": "#0f766e",
     "defaults": {
       "org": "Shambala Carbon Offsets LLC",
       "website": "https://www.land-art.space/"

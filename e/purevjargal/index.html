@@ -1,42 +1,52 @@
 <!doctype html>
-<html lang="mn">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Purevjargal Ts. · Jack's Coffee</title>
-<meta name="theme-color" content="#0f766e">
+<meta name="theme-color" content="#272727">
 <meta property="og:title" content="Purevjargal Ts.">
 <meta property="og:description" content="CEO · Jack's Coffee">
 <style>
-:root{--brand:#0f766e;--bg:#f6f7f8;--card:#fff;--fg:#111827;--muted:#6b7280;--line:#e5e7eb}
-@media(prefers-color-scheme:dark){:root{--bg:#0b0f12;--card:#151a1f;--fg:#f3f4f6;--muted:#9aa3ad;--line:#262d34}}
+:root{--bg:#272727;--card:#2f2f2f;--fg:#f4f4f4;--muted:#9b9b9b;--line:#3d3d3d;
+ --accent:#a8cc30;--accent-ink:#1c1c1c;--yellow:#fce400;color-scheme:dark}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;
- display:flex;justify-content:center;padding:24px 16px calc(24px + env(safe-area-inset-bottom))}
-.card{width:100%;max-width:420px;background:var(--card);border-radius:20px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08),0 12px 32px rgba(0,0,0,.06)}
-.hero{background:var(--brand);height:104px}
-.body{padding:0 24px 24px;margin-top:-52px}
-.avatar{width:104px;height:104px;border-radius:50%;border:4px solid var(--card);display:flex;align-items:center;
- justify-content:center;font-size:36px;font-weight:600;color:#fff;background:var(--brand)}
-h1{font-size:24px;margin:16px 0 4px;letter-spacing:-.01em}
-.sub{color:var(--muted);margin:0 0 20px;font-size:15px}
-.gap{height:20px}
-.save{display:block;text-align:center;background:var(--brand);color:#fff;text-decoration:none;font-weight:600;
- padding:15px;border-radius:14px;margin-bottom:22px;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--fg);
+ font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;
+ padding:24px 16px calc(24px + env(safe-area-inset-bottom))}
+img{max-width:100%;height:auto;display:block}
+
+.card{width:100%;max-width:420px;margin:0 auto;background:var(--card);border-radius:22px;overflow:hidden;
+ border:1px solid var(--line);box-shadow:0 18px 44px rgba(0,0,0,.45)}
+.brand{background:var(--bg);padding:26px 24px 22px;border-bottom:1px solid var(--line)}
+.brand img{width:172px;margin:0 auto}
+.body{padding:26px 24px 24px;text-align:center}
+.avatar{width:84px;height:84px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;
+ justify-content:center;font-size:28px;font-weight:600;letter-spacing:.02em;
+ color:var(--accent);border:2px solid var(--accent);background:rgba(168,204,48,.08)}
+.avatar.q{color:var(--muted);border:2px dashed var(--line);background:none}
+h1{font-size:25px;margin:0 0 6px;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:0 0 22px;font-size:14.5px}
+.gap{height:22px}
+.save{display:block;background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:700;
+ padding:15px;border-radius:13px;margin-bottom:24px;-webkit-tap-highlight-color:transparent}
 .save:active{opacity:.85}
-.pending{text-align:center;color:var(--muted);font-size:14px;border:1px dashed var(--line);
- border-radius:14px;padding:15px;margin:0 0 22px}
-.rows{border-top:1px solid var(--line)}
-.row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line);
- text-decoration:none;color:inherit}
-.row .k{color:var(--muted);font-size:13px;flex:0 0 auto}
-.row .v{text-align:right;word-break:break-word;font-size:15px}
-.note{color:var(--muted);font-size:14px;margin-top:18px}
+.pending{color:var(--muted);font-size:14px;border:1px dashed var(--line);border-radius:13px;
+ padding:18px;margin:0}
+.rows{text-align:left;border-top:1px solid var(--line)}
+.row{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:14px 0;
+ border-bottom:1px solid var(--line);text-decoration:none;color:inherit}
+.row:last-child{border-bottom:0}
+.row .k{color:var(--muted);font-size:12.5px;letter-spacing:.03em;text-transform:uppercase;flex:0 0 auto}
+.row .v{text-align:right;overflow-wrap:anywhere;min-width:0;font-size:15px}
+.note{color:var(--muted);font-size:14px;margin:18px 0 0;text-align:left}
+.foot{background:var(--bg);border-top:1px solid var(--line);padding:20px 24px}
+.foot img{width:132px;margin:0 auto;opacity:.72}
 </style>
 </head>
 <body>
 <main class="card">
-  <div class="hero"></div>
+  <header class="brand"><img src="../../assets/land-art-space.png" alt="Land-art space" width="720" height="212"></header>
   <div class="body">
     <div class="avatar">PT</div>
     <h1>Purevjargal Ts.</h1>
@@ -52,6 +62,7 @@ h1{font-size:24px;margin:16px 0 4px;letter-spacing:-.01em}
     </div>
     
   </div>
+  <footer class="foot"><img src="../../assets/hexagon.png" alt="Hexagon — Land Art Community" width="514" height="142"></footer>
 </main>
 <script>
 // Fallback: if the host serves .vcf with a wrong Content-Type, hand the browser

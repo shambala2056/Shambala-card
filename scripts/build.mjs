@@ -65,12 +65,22 @@ function vcard(p) {
   return L.map(fold).join('\r\n') + '\r\n';
 }
 
-function page(p) {
+// Брэндийн харанхуй загвар — лого хоёулаа цайвар тул #272727 дэвсгэр дээр тавина.
+const THEME = `
+:root{--bg:#272727;--card:#2f2f2f;--fg:#f4f4f4;--muted:#9b9b9b;--line:#3d3d3d;
+ --accent:#a8cc30;--accent-ink:#1c1c1c;--yellow:#fce400;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+ font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;
+ padding:24px 16px calc(24px + env(safe-area-inset-bottom))}
+img{max-width:100%;height:auto;display:block}
+`;
+
+function page(p, a = '../../') {
   const fn = p.placeholder ? 'Coming soon' : displayName(p);
   const initials = p.placeholder
     ? '?'
     : fn.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
-  const color = site.brandColor || '#0f766e';
   const rows = [
     p.phoneMobile && ['Mobile', p.phoneMobile, `tel:${p.phoneMobile.replace(/\s/g, '')}`],
     p.phoneWork && ['Work', p.phoneWork, `tel:${p.phoneWork.replace(/\s/g, '')}`],
@@ -78,60 +88,64 @@ function page(p) {
     ...websitesOf(p).map((w) => ['Website', w.replace(/^https?:\/\//, '').replace(/\/$/, ''), w]),
     p.address && ['Address', p.address, `https://maps.google.com/?q=${encodeURIComponent(p.address)}`],
   ].filter(Boolean);
+  const sub = [p.title, p.org].filter(Boolean).join(' · ');
 
   return `<!doctype html>
-<html lang="mn">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>${html(fn)}${p.org ? ' · ' + html(p.org) : ''}</title>
-<meta name="theme-color" content="${html(color)}">
+<meta name="theme-color" content="#272727">
 <meta property="og:title" content="${html(fn)}">
-<meta property="og:description" content="${html([p.title, p.org].filter(Boolean).join(' · '))}">
-<style>
-:root{--brand:${html(color)};--bg:#f6f7f8;--card:#fff;--fg:#111827;--muted:#6b7280;--line:#e5e7eb}
-@media(prefers-color-scheme:dark){:root{--bg:#0b0f12;--card:#151a1f;--fg:#f3f4f6;--muted:#9aa3ad;--line:#262d34}}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;
- display:flex;justify-content:center;padding:24px 16px calc(24px + env(safe-area-inset-bottom))}
-.card{width:100%;max-width:420px;background:var(--card);border-radius:20px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08),0 12px 32px rgba(0,0,0,.06)}
-.hero{background:var(--brand);height:104px}
-.body{padding:0 24px 24px;margin-top:-52px}
-.avatar{width:104px;height:104px;border-radius:50%;border:4px solid var(--card);display:flex;align-items:center;
- justify-content:center;font-size:36px;font-weight:600;color:#fff;background:var(--brand)}
-h1{font-size:24px;margin:16px 0 4px;letter-spacing:-.01em}
-.sub{color:var(--muted);margin:0 0 20px;font-size:15px}
-.gap{height:20px}
-.save{display:block;text-align:center;background:var(--brand);color:#fff;text-decoration:none;font-weight:600;
- padding:15px;border-radius:14px;margin-bottom:22px;-webkit-tap-highlight-color:transparent}
+<meta property="og:description" content="${html(sub)}">
+<style>${THEME}
+.card{width:100%;max-width:420px;margin:0 auto;background:var(--card);border-radius:22px;overflow:hidden;
+ border:1px solid var(--line);box-shadow:0 18px 44px rgba(0,0,0,.45)}
+.brand{background:var(--bg);padding:26px 24px 22px;border-bottom:1px solid var(--line)}
+.brand img{width:172px;margin:0 auto}
+.body{padding:26px 24px 24px;text-align:center}
+.avatar{width:84px;height:84px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;
+ justify-content:center;font-size:28px;font-weight:600;letter-spacing:.02em;
+ color:var(--accent);border:2px solid var(--accent);background:rgba(168,204,48,.08)}
+.avatar.q{color:var(--muted);border:2px dashed var(--line);background:none}
+h1{font-size:25px;margin:0 0 6px;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:0 0 22px;font-size:14.5px}
+.gap{height:22px}
+.save{display:block;background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:700;
+ padding:15px;border-radius:13px;margin-bottom:24px;-webkit-tap-highlight-color:transparent}
 .save:active{opacity:.85}
-.pending{text-align:center;color:var(--muted);font-size:14px;border:1px dashed var(--line);
- border-radius:14px;padding:15px;margin:0 0 22px}
-.rows{border-top:1px solid var(--line)}
-.row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line);
- text-decoration:none;color:inherit}
-.row .k{color:var(--muted);font-size:13px;flex:0 0 auto}
-.row .v{text-align:right;word-break:break-word;font-size:15px}
-.note{color:var(--muted);font-size:14px;margin-top:18px}
+.pending{color:var(--muted);font-size:14px;border:1px dashed var(--line);border-radius:13px;
+ padding:18px;margin:0}
+.rows{text-align:left;border-top:1px solid var(--line)}
+.row{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:14px 0;
+ border-bottom:1px solid var(--line);text-decoration:none;color:inherit}
+.row:last-child{border-bottom:0}
+.row .k{color:var(--muted);font-size:12.5px;letter-spacing:.03em;text-transform:uppercase;flex:0 0 auto}
+.row .v{text-align:right;overflow-wrap:anywhere;min-width:0;font-size:15px}
+.note{color:var(--muted);font-size:14px;margin:18px 0 0;text-align:left}
+.foot{background:var(--bg);border-top:1px solid var(--line);padding:20px 24px}
+.foot img{width:132px;margin:0 auto;opacity:.72}
 </style>
 </head>
 <body>
 <main class="card">
-  <div class="hero"></div>
+  <header class="brand"><img src="${a}assets/land-art-space.png" alt="Land-art space" width="720" height="212"></header>
   <div class="body">
-    <div class="avatar">${html(initials)}</div>
+    <div class="avatar${p.placeholder ? ' q' : ''}">${html(initials)}</div>
     <h1>${html(fn)}</h1>
-    ${[p.title, p.org].filter(Boolean).length ? `<p class="sub">${html([p.title, p.org].filter(Boolean).join(' · '))}</p>` : '<div class="gap"></div>'}
+    ${sub ? `<p class="sub">${html(sub)}</p>` : '<div class="gap"></div>'}
 
     ${p.placeholder
       ? `<p class="pending">This card hasn't been set up yet.<br>Please check back later.</p>`
       : `<a class="save" id="save" href="contact.vcf" type="text/vcard">Save contact</a>`}
 
-    <div class="rows">
+    ${rows.length ? `<div class="rows">
       ${rows.map(([k, v, href]) => `<a class="row" href="${html(href)}"><span class="k">${html(k)}</span><span class="v">${html(v)}</span></a>`).join('\n      ')}
-    </div>
+    </div>` : ''}
     ${p.note ? `<p class="note">${html(p.note)}</p>` : ''}
   </div>
+  <footer class="foot"><img src="${a}assets/hexagon.png" alt="Hexagon — Land Art Community" width="514" height="142"></footer>
 </main>
 ${p.placeholder ? '' : `<script>
 // Fallback: if the host serves .vcf with a wrong Content-Type, hand the browser
@@ -170,25 +184,30 @@ function aliasPage(to) {
 }
 
 function indexPage(list) {
-  const color = site.brandColor || '#0f766e';
   return `<!doctype html>
-<html lang="mn"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>${html(site.org || 'Contacts')} — Team contacts</title>
-<style>
-:root{--brand:${html(color)};--bg:#f6f7f8;--card:#fff;--fg:#111827;--muted:#6b7280;--line:#e5e7eb}
-@media(prefers-color-scheme:dark){:root{--bg:#0b0f12;--card:#151a1f;--fg:#f3f4f6;--muted:#9aa3ad;--line:#262d34}}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;
- display:flex;justify-content:center;padding:32px 16px}
-.wrap{width:100%;max-width:420px}
-h1{font-size:22px;margin:0 0 4px}p.s{color:var(--muted);margin:0 0 20px;font-size:14px}
-a.p{display:flex;justify-content:space-between;align-items:center;background:var(--card);border:1px solid var(--line);
- border-radius:14px;padding:14px 16px;margin-bottom:10px;text-decoration:none;color:inherit}
-small{color:var(--muted)}
+<meta name="theme-color" content="#272727">
+<style>${THEME}
+.wrap{width:100%;max-width:420px;margin:0 auto}
+.brand{padding:8px 0 28px}
+.brand img{width:196px;margin:0 auto}
+p.s{color:var(--muted);margin:0 0 18px;font-size:14px;text-align:center}
+a.p{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--card);
+ overflow-wrap:anywhere;
+ border:1px solid var(--line);border-radius:14px;padding:15px 17px;margin-bottom:10px;
+ text-decoration:none;color:inherit}
+a.p:active{border-color:var(--accent)}
+small{color:var(--muted);font-size:12.5px;letter-spacing:.03em;text-transform:uppercase;
+ text-align:right;flex:0 0 auto}
+.foot{padding:22px 0 4px}
+.foot img{width:132px;margin:0 auto;opacity:.72}
 </style></head><body><div class="wrap">
-<h1>${html(site.org || '')}</h1>
+<header class="brand"><img src="assets/land-art-space.png" alt="Land-art space" width="720" height="212"></header>
 <p class="s">Open a card and tap Save contact.</p>
 ${list.map((p) => `<a class="p" href="e/${html(p.slug)}/"><span>${html(p.placeholder ? (p.label ?? 'Reserved') : displayName(p))}</span><small>${html(p.placeholder ? 'reserved' : p.title || '')}</small></a>`).join('\n')}
+<footer class="foot"><img src="assets/hexagon.png" alt="Hexagon — Land Art Community" width="514" height="142"></footer>
 </div></body></html>
 `;
 }
