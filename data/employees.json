@@ -69,11 +69,14 @@
     },
     {
       "slug": "customer-1",
-      "placeholder": true,
-      "label": "Customer 1",
       "aliases": [
         "work-1"
-      ]
+      ],
+      "lastName": "B",
+      "firstName": "Shijirbat",
+      "title": "CEO",
+      "phoneMobile": "+976 91918097",
+      "email": "zeerd.shambala@gmail.com"
     },
     {
       "slug": "work-2",
