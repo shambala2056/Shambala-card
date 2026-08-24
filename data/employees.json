@@ -68,9 +68,12 @@
       ]
     },
     {
-      "slug": "work-1",
+      "slug": "customer-1",
       "placeholder": true,
-      "label": "Work 1"
+      "label": "Customer 1",
+      "aliases": [
+        "work-1"
+      ]
     },
     {
       "slug": "work-2",

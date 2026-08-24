@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Coming soon</title>
+<meta name="theme-color" content="#272727">
+<meta property="og:title" content="Coming soon">
+<meta property="og:description" content="">
+<style>
+:root{--bg:#272727;--card:#2f2f2f;--fg:#f4f4f4;--muted:#9b9b9b;--line:#3d3d3d;
+ --accent:#a8cc30;--accent-ink:#1c1c1c;--yellow:#fce400;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+ font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;
+ padding:24px 16px calc(24px + env(safe-area-inset-bottom))}
+img{max-width:100%;height:auto;display:block}
+
+.card{width:100%;max-width:420px;margin:0 auto;background:var(--card);border-radius:22px;overflow:hidden;
+ border:1px solid var(--line);box-shadow:0 18px 44px rgba(0,0,0,.45)}
+.brand{background:var(--bg);padding:26px 24px 22px;border-bottom:1px solid var(--line)}
+.brand img{width:172px;margin:0 auto}
+.body{padding:26px 24px 24px;text-align:center}
+.avatar{width:84px;height:84px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;
+ justify-content:center;font-size:28px;font-weight:600;letter-spacing:.02em;
+ color:var(--accent);border:2px solid var(--accent);background:rgba(168,204,48,.08)}
+.avatar.q{color:var(--muted);border:2px dashed var(--line);background:none}
+h1{font-size:25px;margin:0 0 6px;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:0 0 22px;font-size:14.5px}
+.gap{height:22px}
+.save{display:block;background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:700;
+ padding:15px;border-radius:13px;margin-bottom:24px;-webkit-tap-highlight-color:transparent}
+.save:active{opacity:.85}
+.pending{color:var(--muted);font-size:14px;border:1px dashed var(--line);border-radius:13px;
+ padding:18px;margin:0}
+.rows{text-align:left;border-top:1px solid var(--line)}
+.row{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:14px 0;
+ border-bottom:1px solid var(--line);text-decoration:none;color:inherit}
+.row:last-child{border-bottom:0}
+.row .k{color:var(--muted);font-size:12.5px;letter-spacing:.03em;text-transform:uppercase;flex:0 0 auto}
+.row .v{text-align:right;overflow-wrap:anywhere;min-width:0;font-size:15px}
+.note{color:var(--muted);font-size:14px;margin:18px 0 0;text-align:left}
+.foot{background:var(--bg);border-top:1px solid var(--line);padding:20px 24px}
+.foot img{width:132px;margin:0 auto;opacity:.72}
+</style>
+</head>
+<body>
+<main class="card">
+  <header class="brand"><img src="../../assets/land-art-space.png" alt="Land-art space" width="720" height="212"></header>
+  <div class="body">
+    <div class="avatar q">?</div>
+    <h1>Coming soon</h1>
+    <div class="gap"></div>
+
+    <p class="pending">This card hasn't been set up yet.<br>Please check back later.</p>
+
+    
+    
+  </div>
+  <footer class="foot"><img src="../../assets/hexagon.png" alt="Hexagon — Land Art Community" width="514" height="142"></footer>
+</main>
+
+</body>
+</html>
