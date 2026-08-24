@@ -1,12 +1,12 @@
 BEGIN:VCARD
 VERSION:3.0
-N:J;Erdenebayar;;;
-FN:Erdenebayar J.
-ORG:MMS Engineering LLC
+N:Jigmeddorj;Erdenebayar;;;
+FN:Erdenebayar Jigmeddorj
+ORG:Clean Earth
 TITLE:HSS
 TEL;TYPE=CELL,VOICE:+976 90900369
 TEL;TYPE=WORK,VOICE:+976 77111999
-EMAIL;TYPE=INTERNET,WORK:erdenebayar@source.mn
-URL;TYPE=WORK:https://www.source.mn/
+EMAIL;TYPE=INTERNET,WORK:bayar@cleanearth.mn
+URL;TYPE=WORK:https://www.cleanearth.mn/
 REV:2026-08-20T00:00:00Z
 END:VCARD
