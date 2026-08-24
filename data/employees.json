@@ -67,6 +67,16 @@
         "https://jacks.coffee/",
         "https://www.land-art.space/"
       ]
+    },
+    {
+      "slug": "work-1",
+      "placeholder": true,
+      "label": "Work 1"
+    },
+    {
+      "slug": "work-2",
+      "placeholder": true,
+      "label": "Work 2"
     }
   ]
 }

@@ -34,6 +34,22 @@ git add -A && git commit -m "Update contacts" && git push
 Дараа нь GitHub → **Settings → Pages → Source: Deploy from a branch → main / (root)**.
 1–2 минутын дараа `https://shambala2056.github.io/Shambala-card/` дээр нээгдэнэ.
 
+## Хоосон слотыг урьдчилж таг бичих
+
+Тагт бичсэн URL нь мөнх — доторх мэдээллийг хэдийд ч солиод дахин deploy хийхэд
+тухайн таг шинэ мэдээллийг харуулна. Тиймээс хүн нь тодроогүй байхад слот үүсгээд
+таг бичиж болно:
+
+1. `data/employees.json`-д `{"slug": "work-3", "placeholder": true, "label": "Work 3"}` нэмнэ
+2. Build + push → `/e/work-3/` хаяг амьд болно, "reserved" гэж харагдана
+3. Тагт бичнэ
+4. Хүн тодрох үед `placeholder`/`label`-ыг **устгаад** жинхэнэ талбаруудыг бичнэ.
+   **`slug`-ыг хэзээ ч бүү сольж болгоомжил** — тагт бичигдсэн хаяг тэр хэвээрээ байх ёстой.
+
+`placeholder` үед `Save contact` товч зориуд гардаггүй. Учир нь хэн нэгэн хоосон
+контактыг хадгалчихвал дараа нь мэдээлэл бөглөсөн ч түүний утсан дахь хуулбар
+шинэчлэгддэггүй.
+
 ## NFC тагт бичих
 
 1. Android дээр **NFC Tools** (эсвэл NXP TagWriter) суулгана.
@@ -54,6 +70,8 @@ git add -A && git commit -m "Update contacts" && git push
 | `lastName` / `firstName` | ✅ | Овог / Нэр |
 | `displayName` | | Зөвхөн онцгой тохиолдолд — үндсэндээ `firstName` + `lastName`-ээс автоматаар үүснэ |
 | `aliases` | | Хуучин slug-ууд — тэднээс шинэ хаяг руу redirect хуудас үүснэ |
+| `placeholder` | | `true` бол хоосон слот: vCard үүсэхгүй, `Save contact` товч гарахгүй |
+| `label` | | Хоосон слотын нэр (`Work 1`) |
 | `org`, `title` | | Байгууллага, албан тушаал |
 | `phoneMobile`, `phoneWork` | | `+976 91918097` хэлбэрээр |
 | `email`, `website`, `address`, `note` | | |

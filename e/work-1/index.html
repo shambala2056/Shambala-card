@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Purevjargal Ts. · Jack's Coffee</title>
+<title>Work 1 · Shambala Carbon Offsets LLC</title>
 <meta name="theme-color" content="#0f766e">
-<meta property="og:title" content="Purevjargal Ts.">
-<meta property="og:description" content="CEO · Jack's Coffee">
+<meta property="og:title" content="Work 1">
+<meta property="og:description" content="Shambala Carbon Offsets LLC">
 <style>
 :root{--brand:#0f766e;--bg:#f6f7f8;--card:#fff;--fg:#111827;--muted:#6b7280;--line:#e5e7eb}
 @media(prefers-color-scheme:dark){:root{--bg:#0b0f12;--card:#151a1f;--fg:#f3f4f6;--muted:#9aa3ad;--line:#262d34}}
@@ -37,38 +37,18 @@ h1{font-size:24px;margin:16px 0 4px;letter-spacing:-.01em}
 <main class="card">
   <div class="hero"></div>
   <div class="body">
-    <div class="avatar">PT</div>
-    <h1>Purevjargal Ts.</h1>
-    <p class="sub">CEO · Jack's Coffee</p>
+    <div class="avatar">?</div>
+    <h1>Work 1</h1>
+    <p class="sub">Shambala Carbon Offsets LLC</p>
 
-    <a class="save" id="save" href="contact.vcf" type="text/vcard">Save contact</a>
+    <p class="pending">This card is reserved. Contact details are coming soon.</p>
 
     <div class="rows">
-      <a class="row" href="tel:+97680006824"><span class="k">Mobile</span><span class="v">+976 80006824</span></a>
-      <a class="row" href="mailto:purevjargal@jackscoffee.mn"><span class="k">Email</span><span class="v">purevjargal@jackscoffee.mn</span></a>
-      <a class="row" href="https://jacks.coffee/"><span class="k">Website</span><span class="v">jacks.coffee</span></a>
       <a class="row" href="https://www.land-art.space/"><span class="k">Website</span><span class="v">www.land-art.space</span></a>
     </div>
     
   </div>
 </main>
-<script>
-// Fallback: if the host serves .vcf with a wrong Content-Type, hand the browser
-// a blob tagged text/vcard so iOS/Android still recognise it as a contact.
-document.getElementById('save').addEventListener('click', async function (ev) {
-  try {
-    const res = await fetch('contact.vcf', { cache: 'no-store' });
-    const ct = (res.headers.get('content-type') || '').toLowerCase();
-    if (ct.includes('vcard') || ct.includes('x-vcard')) return; // server is fine, let the link work
-    ev.preventDefault();
-    const blob = new Blob([await res.text()], { type: 'text/vcard;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url; a.download = "purevjargal.vcf";
-    document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(function () { URL.revokeObjectURL(url); }, 20000);
-  } catch (e) { /* offline or fetch blocked — the plain link already handles it */ }
-});
-</script>
+
 </body>
 </html>

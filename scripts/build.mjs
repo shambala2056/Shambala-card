@@ -65,8 +65,10 @@ function vcard(p) {
 }
 
 function page(p) {
-  const fn = displayName(p);
-  const initials = fn.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
+  const fn = p.placeholder ? (p.label ?? 'Reserved') : displayName(p);
+  const initials = p.placeholder
+    ? '?'
+    : fn.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
   const color = site.brandColor || '#0f766e';
   const rows = [
     p.phoneMobile && ['Mobile', p.phoneMobile, `tel:${p.phoneMobile.replace(/\s/g, '')}`],
@@ -101,6 +103,8 @@ h1{font-size:24px;margin:16px 0 4px;letter-spacing:-.01em}
 .save{display:block;text-align:center;background:var(--brand);color:#fff;text-decoration:none;font-weight:600;
  padding:15px;border-radius:14px;margin-bottom:22px;-webkit-tap-highlight-color:transparent}
 .save:active{opacity:.85}
+.pending{text-align:center;color:var(--muted);font-size:14px;border:1px dashed var(--line);
+ border-radius:14px;padding:15px;margin:0 0 22px}
 .rows{border-top:1px solid var(--line)}
 .row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line);
  text-decoration:none;color:inherit}
@@ -117,7 +121,9 @@ h1{font-size:24px;margin:16px 0 4px;letter-spacing:-.01em}
     <h1>${html(fn)}</h1>
     <p class="sub">${html([p.title, p.org].filter(Boolean).join(' · '))}</p>
 
-    <a class="save" id="save" href="contact.vcf" type="text/vcard">Save contact</a>
+    ${p.placeholder
+      ? `<p class="pending">This card is reserved. Contact details are coming soon.</p>`
+      : `<a class="save" id="save" href="contact.vcf" type="text/vcard">Save contact</a>`}
 
     <div class="rows">
       ${rows.map(([k, v, href]) => `<a class="row" href="${html(href)}"><span class="k">${html(k)}</span><span class="v">${html(v)}</span></a>`).join('\n      ')}
@@ -125,7 +131,7 @@ h1{font-size:24px;margin:16px 0 4px;letter-spacing:-.01em}
     ${p.note ? `<p class="note">${html(p.note)}</p>` : ''}
   </div>
 </main>
-<script>
+${p.placeholder ? '' : `<script>
 // Fallback: if the host serves .vcf with a wrong Content-Type, hand the browser
 // a blob tagged text/vcard so iOS/Android still recognise it as a contact.
 document.getElementById('save').addEventListener('click', async function (ev) {
@@ -142,7 +148,7 @@ document.getElementById('save').addEventListener('click', async function (ev) {
     setTimeout(function () { URL.revokeObjectURL(url); }, 20000);
   } catch (e) { /* offline or fetch blocked — the plain link already handles it */ }
 });
-</script>
+</script>`}
 </body>
 </html>
 `;
@@ -180,7 +186,7 @@ small{color:var(--muted)}
 </style></head><body><div class="wrap">
 <h1>${html(site.org || '')}</h1>
 <p class="s">Open a card and tap Save contact.</p>
-${list.map((p) => `<a class="p" href="e/${html(p.slug)}/"><span>${html(displayName(p))}</span><small>${html(p.title || '')}</small></a>`).join('\n')}
+${list.map((p) => `<a class="p" href="e/${html(p.slug)}/"><span>${html(p.placeholder ? (p.label ?? 'Reserved') : displayName(p))}</span><small>${html(p.placeholder ? 'reserved' : p.title || '')}</small></a>`).join('\n')}
 </div></body></html>
 `;
 }
@@ -194,7 +200,7 @@ for (const p of people) {
   seen.add(p.slug);
   const dir = join(ROOT, 'e', p.slug);
   mkdirSync(dir, { recursive: true });
-  writeFileSync(join(dir, 'contact.vcf'), vcard(p));
+  if (!p.placeholder) writeFileSync(join(dir, 'contact.vcf'), vcard(p));
   writeFileSync(join(dir, 'index.html'), page(p));
   for (const alias of p.aliases ?? []) {
     if (seen.has(alias)) throw new Error(`alias slug-тай мөргөлдөж байна: ${alias}`);
@@ -203,7 +209,9 @@ for (const p of people) {
     writeFileSync(join(ROOT, 'e', alias, 'index.html'), aliasPage(`${base}/e/${p.slug}/`));
     console.log(`    ↳ /e/${alias}/ → /e/${p.slug}/ (redirect)`);
   }
-  console.log(`  ✓ ${displayName(p).padEnd(20)} ${base}/e/${p.slug}/`);
+  const tag = p.placeholder ? '⏳' : '✓';
+  const who = p.placeholder ? `${p.label ?? 'Reserved'} (хоосон)` : displayName(p);
+  console.log(`  ${tag} ${who.padEnd(20)} ${base}/e/${p.slug}/`);
 }
 writeFileSync(join(ROOT, 'index.html'), indexPage(people));
 writeFileSync(join(ROOT, '.nojekyll'), '');
