@@ -192,7 +192,7 @@ function indexPage(list) {
 <style>${THEME}
 .wrap{width:100%;max-width:420px;margin:0 auto}
 .brand{padding:8px 0 28px}
-.brand img{width:196px;margin:0 auto}
+.brand img{width:212px;margin:0 auto}
 p.s{color:var(--muted);margin:0 0 18px;font-size:14px;text-align:center}
 a.p{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--card);
  overflow-wrap:anywhere;
@@ -201,13 +201,10 @@ a.p{display:flex;justify-content:space-between;align-items:center;gap:12px;backg
 a.p:active{border-color:var(--accent)}
 small{color:var(--muted);font-size:12.5px;letter-spacing:.03em;text-transform:uppercase;
  text-align:right;flex:0 0 auto}
-.foot{padding:22px 0 4px}
-.foot img{width:132px;margin:0 auto;opacity:.72}
 </style></head><body><div class="wrap">
-<header class="brand"><img src="assets/land-art-space.png" alt="Land-art space" width="720" height="212"></header>
+<header class="brand"><img src="assets/hexagon.png" alt="Hexagon — Land Art Community" width="514" height="142"></header>
 <p class="s">Open a card and tap Save contact.</p>
 ${list.map((p) => `<a class="p" href="e/${html(p.slug)}/"><span>${html(p.placeholder ? (p.label ?? 'Reserved') : displayName(p))}</span><small>${html(p.placeholder ? 'reserved' : p.title || '')}</small></a>`).join('\n')}
-<footer class="foot"><img src="assets/hexagon.png" alt="Hexagon — Land Art Community" width="514" height="142"></footer>
 </div></body></html>
 `;
 }
