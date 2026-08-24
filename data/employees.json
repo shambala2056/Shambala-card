@@ -111,8 +111,15 @@
     },
     {
       "slug": "customer-5",
-      "placeholder": true,
-      "label": "Customer 5"
+      "lastName": "",
+      "firstName": "Imy",
+      "org": "",
+      "website": "",
+      "phoneMobile": "+49 172 8111307",
+      "emails": [
+        "imy.fugger@gmail.com",
+        "ifugger@aol.com"
+      ]
     }
   ]
 }

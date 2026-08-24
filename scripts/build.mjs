@@ -24,8 +24,9 @@ const surname = (v) => (v && v.length <= 3 && !v.endsWith('.') ? v + '.' : v);
 const displayName = (p) =>
   p.displayName || [p.firstName, surname(p.lastName)].filter(Boolean).join(' ').trim();
 
-// `websites` (жагсаалт) нь `website`-г дарж бичнэ — эхнийх нь эхэнд харагдана
+// `websites`/`emails` (жагсаалт) нь ганц утгатай хувилбарыг дарж бичнэ — эхнийх нь эхэнд харагдана
 const websitesOf = (p) => [].concat(p.websites ?? p.website ?? []).filter(Boolean);
+const emailsOf = (p) => [].concat(p.emails ?? p.email ?? []).filter(Boolean);
 
 // RFC 2426 folding: max 75 octets per line, continuation starts with one space.
 function fold(line) {
@@ -55,7 +56,7 @@ function vcard(p) {
   if (p.title) L.push(`TITLE:${esc(p.title)}`);
   if (p.phoneMobile) L.push(`TEL;TYPE=CELL,VOICE:${esc(p.phoneMobile)}`);
   if (p.phoneWork) L.push(`TEL;TYPE=WORK,VOICE:${esc(p.phoneWork)}`);
-  if (p.email) L.push(`EMAIL;TYPE=INTERNET,WORK:${esc(p.email)}`);
+  for (const m of emailsOf(p)) L.push(`EMAIL;TYPE=INTERNET,WORK:${esc(m)}`);
   for (const w of websitesOf(p)) L.push(`URL;TYPE=WORK:${esc(w)}`);
   if (p.address) L.push(`ADR;TYPE=WORK:;;${esc(p.address)};;;;`);
   if (p.note) L.push(`NOTE:${esc(p.note)}`);
@@ -84,7 +85,7 @@ function page(p, a = '../../') {
   const rows = [
     p.phoneMobile && ['Mobile', p.phoneMobile, `tel:${p.phoneMobile.replace(/\s/g, '')}`],
     p.phoneWork && ['Work', p.phoneWork, `tel:${p.phoneWork.replace(/\s/g, '')}`],
-    p.email && ['Email', p.email, `mailto:${p.email}`],
+    ...emailsOf(p).map((m) => ['Email', m, `mailto:${m}`]),
     ...websitesOf(p).map((w) => ['Website', w.replace(/^https?:\/\//, '').replace(/\/$/, ''), w]),
     p.address && ['Address', p.address, `https://maps.google.com/?q=${encodeURIComponent(p.address)}`],
   ].filter(Boolean);
