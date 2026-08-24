@@ -8,8 +8,9 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const cfg = JSON.parse(readFileSync(join(ROOT, 'data/employees.json'), 'utf8'));
 const site = cfg.site ?? {};
 const base = (site.baseUrl ?? '').replace(/\/+$/, '');
-// site.defaults нь ажилтан бүрт нэгдэнэ — org, website мэтийг 8 удаа давтахгүйн тулд
-const people = cfg.employees.map((p) => ({ ...(site.defaults ?? {}), ...p }));
+// site.defaults нь ажилтан бүрт нэгдэнэ — org, website мэтийг 8 удаа давтахгүйн тулд.
+// Хоосон слот өвлөхгүй: хүн нь тодроогүй байхад компани нь мэдэгдэхгүй.
+const people = cfg.employees.map((p) => (p.placeholder ? p : { ...(site.defaults ?? {}), ...p }));
 
 const esc = (v) =>
   String(v ?? '').replace(/\\/g, '\\\\').replace(/;/g, '\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
@@ -100,6 +101,7 @@ body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 -apple-system,B
  justify-content:center;font-size:36px;font-weight:600;color:#fff;background:var(--brand)}
 h1{font-size:24px;margin:16px 0 4px;letter-spacing:-.01em}
 .sub{color:var(--muted);margin:0 0 20px;font-size:15px}
+.gap{height:20px}
 .save{display:block;text-align:center;background:var(--brand);color:#fff;text-decoration:none;font-weight:600;
  padding:15px;border-radius:14px;margin-bottom:22px;-webkit-tap-highlight-color:transparent}
 .save:active{opacity:.85}
@@ -119,7 +121,7 @@ h1{font-size:24px;margin:16px 0 4px;letter-spacing:-.01em}
   <div class="body">
     <div class="avatar">${html(initials)}</div>
     <h1>${html(fn)}</h1>
-    <p class="sub">${html([p.title, p.org].filter(Boolean).join(' · '))}</p>
+    ${[p.title, p.org].filter(Boolean).length ? `<p class="sub">${html([p.title, p.org].filter(Boolean).join(' · '))}</p>` : '<div class="gap"></div>'}
 
     ${p.placeholder
       ? `<p class="pending">This card is reserved. Contact details are coming soon.</p>`
