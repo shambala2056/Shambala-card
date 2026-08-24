@@ -108,6 +108,11 @@
       "phoneMobile": "+976 80966969",
       "phoneWork": "+976 75777733",
       "email": "telmuun@arbori.mn"
+    },
+    {
+      "slug": "customer-5",
+      "placeholder": true,
+      "label": "Customer 5"
     }
   ]
 }
