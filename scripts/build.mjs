@@ -66,7 +66,7 @@ function vcard(p) {
 }
 
 function page(p) {
-  const fn = p.placeholder ? (p.label ?? 'Reserved') : displayName(p);
+  const fn = p.placeholder ? 'Coming soon' : displayName(p);
   const initials = p.placeholder
     ? '?'
     : fn.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
@@ -124,7 +124,7 @@ h1{font-size:24px;margin:16px 0 4px;letter-spacing:-.01em}
     ${[p.title, p.org].filter(Boolean).length ? `<p class="sub">${html([p.title, p.org].filter(Boolean).join(' · '))}</p>` : '<div class="gap"></div>'}
 
     ${p.placeholder
-      ? `<p class="pending">This card is reserved. Contact details are coming soon.</p>`
+      ? `<p class="pending">This card hasn't been set up yet.<br>Please check back later.</p>`
       : `<a class="save" id="save" href="contact.vcf" type="text/vcard">Save contact</a>`}
 
     <div class="rows">
