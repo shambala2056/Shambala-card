@@ -95,6 +95,19 @@
       "phoneMobile": "+976 90900369",
       "phoneWork": "+976 77111999",
       "email": "erdenebayar@source.mn"
+    },
+    {
+      "slug": "telmuun",
+      "lastName": "Ts",
+      "firstName": "Telmuun",
+      "title": "CEO",
+      "org": "Arbori Green Creation",
+      "websites": [
+        "https://www.arbori.mn/"
+      ],
+      "phoneMobile": "+976 80966969",
+      "phoneWork": "+976 75777733",
+      "email": "telmuun@arbori.mn"
     }
   ]
 }
