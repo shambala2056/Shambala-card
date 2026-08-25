@@ -140,6 +140,51 @@
       "slug": "customer-6",
       "placeholder": true,
       "label": "Customer 6"
+    },
+    {
+      "slug": "customer-7",
+      "placeholder": true,
+      "label": "Customer 7"
+    },
+    {
+      "slug": "customer-8",
+      "placeholder": true,
+      "label": "Customer 8"
+    },
+    {
+      "slug": "customer-9",
+      "placeholder": true,
+      "label": "Customer 9"
+    },
+    {
+      "slug": "customer-10",
+      "placeholder": true,
+      "label": "Customer 10"
+    },
+    {
+      "slug": "customer-11",
+      "placeholder": true,
+      "label": "Customer 11"
+    },
+    {
+      "slug": "customer-12",
+      "placeholder": true,
+      "label": "Customer 12"
+    },
+    {
+      "slug": "customer-13",
+      "placeholder": true,
+      "label": "Customer 13"
+    },
+    {
+      "slug": "customer-14",
+      "placeholder": true,
+      "label": "Customer 14"
+    },
+    {
+      "slug": "customer-15",
+      "placeholder": true,
+      "label": "Customer 15"
     }
   ]
 }
