@@ -147,8 +147,14 @@
     },
     {
       "slug": "customer-7",
-      "placeholder": true,
-      "label": "Customer 7"
+      "lastName": "Enkhbold",
+      "firstName": "Saruul",
+      "org": "",
+      "phoneMobile": "+976 88072171",
+      "email": "E.saruul@avsf.org",
+      "websites": [
+        "https://www.avsf.org/"
+      ]
     },
     {
       "slug": "customer-8",
