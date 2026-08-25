@@ -163,8 +163,14 @@
     },
     {
       "slug": "customer-9",
-      "placeholder": true,
-      "label": "Customer 9"
+      "lastName": "Bartels",
+      "firstName": "Chris",
+      "org": "",
+      "phoneMobile": "+976 80841486",
+      "email": "C.bartels@avsf.org",
+      "websites": [
+        "https://www.avsf.org/"
+      ]
     },
     {
       "slug": "customer-10",
