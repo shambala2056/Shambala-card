@@ -138,8 +138,12 @@
     },
     {
       "slug": "customer-6",
-      "placeholder": true,
-      "label": "Customer 6"
+      "lastName": "Alhinti",
+      "firstName": "Hitham",
+      "org": "",
+      "website": "",
+      "phoneMobile": "+966 59 818 6784",
+      "email": "hitham.alhinti@gmail.com"
     },
     {
       "slug": "customer-7",
