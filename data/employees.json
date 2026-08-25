@@ -120,6 +120,26 @@
         "imy.fugger@gmail.com",
         "ifugger@aol.com"
       ]
+    },
+    {
+      "slug": "customer-2",
+      "placeholder": true,
+      "label": "Customer 2"
+    },
+    {
+      "slug": "customer-3",
+      "placeholder": true,
+      "label": "Customer 3"
+    },
+    {
+      "slug": "customer-4",
+      "placeholder": true,
+      "label": "Customer 4"
+    },
+    {
+      "slug": "customer-6",
+      "placeholder": true,
+      "label": "Customer 6"
     }
   ]
 }
