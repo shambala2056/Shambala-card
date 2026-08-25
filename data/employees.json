@@ -162,8 +162,14 @@
     },
     {
       "slug": "customer-10",
-      "placeholder": true,
-      "label": "Customer 10"
+      "lastName": "Nyamdavaa",
+      "firstName": "Javkhlan",
+      "org": "",
+      "phoneMobile": "+976 80844411",
+      "email": "JAVKHLAN.nyamjav@giz.de",
+      "websites": [
+        "https://www.giz.de/"
+      ]
     },
     {
       "slug": "customer-11",

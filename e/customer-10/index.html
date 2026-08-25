@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Coming soon</title>
+<title>Javkhlan Nyamdavaa</title>
 <meta name="theme-color" content="#272727">
-<meta property="og:title" content="Coming soon">
+<meta property="og:title" content="Javkhlan Nyamdavaa">
 <meta property="og:description" content="">
 <style>
 :root{--bg:#272727;--card:#2f2f2f;--fg:#f4f4f4;--muted:#9b9b9b;--line:#3d3d3d;
@@ -46,16 +46,37 @@ h1{font-size:25px;margin:0 0 6px;letter-spacing:-.01em}
 <main class="card">
   <header class="brand"><img src="../../assets/hexagon.png" alt="Hexagon — Land Art Community" width="514" height="142"></header>
   <div class="body">
-    <div class="avatar q">?</div>
-    <h1>Coming soon</h1>
+    <div class="avatar">JN</div>
+    <h1>Javkhlan Nyamdavaa</h1>
     <div class="gap"></div>
 
-    <p class="pending">This card hasn't been set up yet.<br>Please check back later.</p>
+    <a class="save" id="save" href="contact.vcf" type="text/vcard">Save contact</a>
 
-    
+    <div class="rows">
+      <a class="row" href="tel:+97680844411"><span class="k">Mobile</span><span class="v">+976 80844411</span></a>
+      <a class="row" href="mailto:JAVKHLAN.nyamjav@giz.de"><span class="k">Email</span><span class="v">JAVKHLAN.nyamjav@giz.de</span></a>
+      <a class="row" href="https://www.giz.de/"><span class="k">Website</span><span class="v">www.giz.de</span></a>
+    </div>
     
   </div>
 </main>
-
+<script>
+// Fallback: if the host serves .vcf with a wrong Content-Type, hand the browser
+// a blob tagged text/vcard so iOS/Android still recognise it as a contact.
+document.getElementById('save').addEventListener('click', async function (ev) {
+  try {
+    const res = await fetch('contact.vcf', { cache: 'no-store' });
+    const ct = (res.headers.get('content-type') || '').toLowerCase();
+    if (ct.includes('vcard') || ct.includes('x-vcard')) return; // server is fine, let the link work
+    ev.preventDefault();
+    const blob = new Blob([await res.text()], { type: 'text/vcard;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = "customer-10.vcf";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 20000);
+  } catch (e) { /* offline or fetch blocked — the plain link already handles it */ }
+});
+</script>
 </body>
 </html>
