@@ -123,8 +123,15 @@
     },
     {
       "slug": "customer-2",
-      "placeholder": true,
-      "label": "Customer 2"
+      "lastName": "Ganbaatar",
+      "firstName": "Gantulga",
+      "title": "Dir., Law and Justice Programs",
+      "org": "The Asia Foundation",
+      "websites": [
+        "https://asiafoundation.org/"
+      ],
+      "phoneMobile": "+976 99004411",
+      "email": "gantulga.ganbaatar@asiafoundation.org"
     },
     {
       "slug": "customer-3",
