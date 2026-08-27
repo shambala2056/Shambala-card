@@ -202,8 +202,15 @@
     },
     {
       "slug": "customer-13",
-      "placeholder": true,
-      "label": "Customer 13"
+      "lastName": "Khachatryan",
+      "firstName": "Ruben",
+      "title": "Director",
+      "org": "FPW",
+      "websites": [
+        "https://fpwc.org/"
+      ],
+      "phoneMobile": "+374 93044088",
+      "email": "ruben@fpwc.org"
     },
     {
       "slug": "customer-14",
