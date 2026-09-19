@@ -144,8 +144,12 @@
     },
     {
       "slug": "customer-4",
-      "placeholder": true,
-      "label": "Customer 4"
+      "lastName": "Purevjav",
+      "firstName": "Sainbileg",
+      "org": "",
+      "website": "",
+      "phoneMobile": "+976 99269667",
+      "email": "sainbileg@mecc.gov.mn"
     },
     {
       "slug": "customer-6",
