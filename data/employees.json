@@ -135,8 +135,12 @@
     },
     {
       "slug": "customer-3",
-      "placeholder": true,
-      "label": "Customer 3"
+      "lastName": "Zugeerbai",
+      "firstName": "Tsogtbayar",
+      "org": "",
+      "website": "",
+      "phoneMobile": "+976 99171503",
+      "email": "dunya0918@gmail.com"
     },
     {
       "slug": "customer-4",
