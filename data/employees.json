@@ -173,8 +173,12 @@
     },
     {
       "slug": "customer-8",
-      "placeholder": true,
-      "label": "Customer 8"
+      "lastName": "Ch",
+      "firstName": "Altanzul",
+      "org": "Zamyn-Uud School No.1",
+      "website": "",
+      "phoneMobile": "+976 80808583",
+      "email": "oyukazulaa413@gmail.com"
     },
     {
       "slug": "customer-9",
@@ -200,13 +204,21 @@
     },
     {
       "slug": "customer-11",
-      "placeholder": true,
-      "label": "Customer 11"
+      "lastName": "Ts",
+      "firstName": "Erdenesuvd",
+      "org": "Zamyn-Uud School No.1",
+      "website": "",
+      "phoneMobile": "+976 91039396",
+      "email": "suvdaa.suvd96@gmail.com"
     },
     {
       "slug": "customer-12",
-      "placeholder": true,
-      "label": "Customer 12"
+      "lastName": "B",
+      "firstName": "Enkhmaa",
+      "org": "Zamyn-Uud School No.1",
+      "website": "",
+      "phoneMobile": "+976 88860988",
+      "email": "enkhmaabalchindorj@29gmail.com"
     },
     {
       "slug": "customer-13",
@@ -222,18 +234,30 @@
     },
     {
       "slug": "customer-14",
-      "placeholder": true,
-      "label": "Customer 14"
+      "lastName": "O",
+      "firstName": "Altantsetseg",
+      "org": "Zamyn-Uud School No.1",
+      "website": "",
+      "phoneMobile": "+976 88877313",
+      "email": "altaaaltaa1987@gmail.com"
     },
     {
       "slug": "customer-15",
-      "placeholder": true,
-      "label": "Customer 15"
+      "lastName": "J",
+      "firstName": "Oyuntamir",
+      "org": "Zamyn-Uud School No.1",
+      "website": "",
+      "phoneMobile": "+976 96561035",
+      "email": "tamira0808@gmail.com"
     },
     {
       "slug": "customer-16",
-      "placeholder": true,
-      "label": "Customer 16"
+      "lastName": "E",
+      "firstName": "Bayarmaa",
+      "org": "Zamyn-Uud School No.1",
+      "website": "",
+      "phoneMobile": "+976 90091092",
+      "email": "bm20181030@gmail.com"
     }
   ]
 }
