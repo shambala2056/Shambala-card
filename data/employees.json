@@ -229,6 +229,11 @@
       "slug": "customer-15",
       "placeholder": true,
       "label": "Customer 15"
+    },
+    {
+      "slug": "customer-16",
+      "placeholder": true,
+      "label": "Customer 16"
     }
   ]
 }
